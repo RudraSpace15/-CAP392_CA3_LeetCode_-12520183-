@@ -1,0 +1,22 @@
+//Design a parking system for a parking lot. The parking lot has three kinds of parking spaces: big, medium, and small, with a fixed number of slots for each size.
+
+class ParkingSystem 
+
+{
+    private int[] slots;  // index 1 = big, 2 = medium, 3 = small
+
+    public ParkingSystem(int big, int medium, int small) {
+        slots = new int[4];
+        slots[1] = big;
+        slots[2] = medium;
+        slots[3] = small;
+    }
+    
+    public boolean addCar(int carType) {
+        if (slots[carType] > 0) {
+            slots[carType]--;
+            return true;
+        }
+        return false;
+    }
+}
