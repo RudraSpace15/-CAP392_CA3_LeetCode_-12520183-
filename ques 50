@@ -1,22 +1,29 @@
 //Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
 
-
-
 class Solution {
+
     public double myPow(double x, int n) {
-        long N = n;               // use long to safely handle Integer.MIN_VALUE
-        if (N < 0) {
-            x = 1 / x;
-            N = -N;
+
+        if (n < 0) {
+            return 1.0 / quickPower(x, -(long) n);
         }
 
+        return quickPower(x, n);
+    }
+
+    private double quickPower(double base, long exponent) {
+
         double result = 1.0;
-        while (N > 0) {
-            if ((N & 1) == 1) {   // if N is odd
-                result *= x;
+
+        while (exponent > 0) {
+
+            if ((exponent & 1) == 1) {
+                result = result * base;
             }
-            x *= x;               // square the base
-            N >>= 1;              // divide N by 2
+
+            base = base * base;
+
+            exponent >>= 1;
         }
 
         return result;
